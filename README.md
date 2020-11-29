@@ -6,5 +6,3 @@ This repository contains the code for the [7GUIS-Challange](http://eugenkiss.git
 
 
 ## Tasks
-
-
