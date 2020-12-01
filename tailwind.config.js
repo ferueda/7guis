@@ -2,11 +2,7 @@ module.exports = {
   purge: ['./src/**/*.js', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {
-      minWidth: {
-        200: '200px',
-      },
-    },
+    extend: {},
   },
   variants: {
     extend: {
