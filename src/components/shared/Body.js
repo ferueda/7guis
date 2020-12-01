@@ -1,5 +1,5 @@
 function Body({ children }) {
-  return <div>{children}</div>;
+  return <div className="p-2">{children}</div>;
 }
 
 export default Body;
