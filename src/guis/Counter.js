@@ -12,7 +12,7 @@ function Counter() {
     <Window>
       <Header>Counter</Header>
       <Body>
-        <div className="grid grid-cols-2 grid-rows-1 justify-between p-2 min-w-200">
+        <div className="grid grid-cols-2 grid-rows-1 justify-between">
           <div className="flex justify-center items-center text-sm">{count}</div>
           <Button onClick={handleCount}>Count</Button>
         </div>
