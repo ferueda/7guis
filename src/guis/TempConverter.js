@@ -43,7 +43,7 @@ function TempConverter() {
     <Window>
       <Header>Temperature Converter</Header>
       <Body>
-        <div className="flex items-center">
+        <div className="flex items-center justify-center">
           <Input
             id="celsius"
             name="celsius"
@@ -62,7 +62,7 @@ function TempConverter() {
             value={fahrenheit}
             isValid={isValid(fahrenheit)}
           />
-          <label htmlFor="fahrenheit" className="text-sm text-gray-800 mx-2">
+          <label htmlFor="fahrenheit" className="text-sm text-gray-800 ml-2">
             Fahrenheit
           </label>
         </div>
