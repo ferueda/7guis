@@ -2,7 +2,11 @@ module.exports = {
   purge: ['./src/**/*.js', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        modalOverlay: 'rgba(0, 0, 0, 0.5)',
+      },
+    },
   },
   variants: {
     extend: {
