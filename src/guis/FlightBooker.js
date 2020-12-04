@@ -6,6 +6,7 @@ import Header from '../components/shared/Header';
 import Body from '../components/shared/Body';
 import Input from '../components/shared/Input';
 import Button from '../components/shared/Button';
+import Modal from '../components/shared/Modal';
 
 function checkValue(str, max) {
   if (str.charAt(0) !== '0' || str === '00') {
@@ -52,6 +53,7 @@ function FlightBooker() {
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
   const [flightType, setFlightType] = useState('one-way');
+  const [isModal, setIsModal] = useState(false);
 
   const isButtonDisabled =
     flightType === 'one-way'
@@ -91,6 +93,12 @@ function FlightBooker() {
     setFlightType(type);
   };
 
+  const handleBooking = () => {
+    setIsModal(true);
+  };
+
+  const handleModalClose = () => setIsModal(false);
+
   return (
     <Window>
       <Header>Flight Booker</Header>
@@ -129,8 +137,22 @@ function FlightBooker() {
             />
           </div>
 
-          <Button isDisabled={isButtonDisabled}>Book Flight</Button>
+          <Button isDisabled={isButtonDisabled} onClick={handleBooking}>
+            Book Flight
+          </Button>
         </div>
+
+        {isModal ? (
+          <Modal onClose={handleModalClose}>
+            <h2 className="mb-4">Booking Confirmed</h2>
+            <p className="text-sm text-gray-500 mb-4">
+              You have successfully booked a {flightType} flight{' '}
+              {flightType === 'one-way'
+                ? `for ${start.replace(/ /g, '')}`
+                : `from ${start.replace(/ /g, '')} to ${end.replace(/ /g, '')}`}
+            </p>
+          </Modal>
+        ) : null}
       </Body>
     </Window>
   );
