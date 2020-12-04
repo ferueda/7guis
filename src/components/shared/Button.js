@@ -1,5 +1,4 @@
 function Button({ children, type = 'button', onClick, isDisabled = false }) {
-  console.log(isDisabled);
   return (
     <button
       type={type}
