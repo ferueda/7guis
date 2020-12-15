@@ -1,12 +1,17 @@
-import { useEffect, useRef, useCallback } from 'react';
+import * as React from 'react';
 
 import Button from './Button';
 
-function Modal({ children, onClose }) {
-  const modalRef = useRef(null);
+type Props = {
+  children: React.ReactNode;
+  onClose: () => void;
+};
 
-  const handleKeyUp = useCallback(
-    (event) => {
+const Modal: React.FC<Props> = ({ children, onClose }) => {
+  const modalRef = React.useRef<HTMLDivElement>(null);
+
+  const handleKeyUp = React.useCallback(
+    (event: KeyboardEvent): void => {
       event.preventDefault();
 
       if (event.keyCode === 27) {
@@ -16,16 +21,16 @@ function Modal({ children, onClose }) {
     [onClose],
   );
 
-  const handleOutsideClick = useCallback(
-    (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
+  const handleOutsideClick = React.useCallback(
+    (event: MouseEvent): void => {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
         onClose();
       }
     },
     [onClose],
   );
 
-  useEffect(() => {
+  React.useEffect(() => {
     window.addEventListener('keyup', handleKeyUp, false);
     document.addEventListener('click', handleOutsideClick, false);
 
@@ -52,6 +57,6 @@ function Modal({ children, onClose }) {
       </div>
     </div>
   );
-}
+};
 
 export default Modal;

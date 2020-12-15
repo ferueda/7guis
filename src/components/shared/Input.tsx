@@ -1,4 +1,17 @@
-function Input({
+import * as React from 'react';
+
+type Props = {
+  type?: string;
+  id: string;
+  name: string;
+  placeholder?: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value: string | number;
+  isValid?: boolean;
+  isDisabled?: boolean;
+};
+
+const Input: React.FC<Props> = ({
   type = 'text',
   id,
   placeholder = '',
@@ -7,7 +20,7 @@ function Input({
   value,
   isValid = true,
   isDisabled = false,
-}) {
+}) => {
   return (
     <input
       id={id}
@@ -22,6 +35,6 @@ function Input({
       disabled={isDisabled}
     />
   );
-}
+};
 
 export default Input;

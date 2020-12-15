@@ -1,4 +1,13 @@
-function Button({ children, type = 'button', onClick, isDisabled = false }) {
+import * as React from 'react';
+
+type Props = {
+  children: React.ReactNode;
+  type?: 'button' | 'submit';
+  onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  isDisabled?: boolean;
+};
+
+const Button: React.FC<Props> = ({ children, type = 'button', onClick, isDisabled = false }) => {
   return (
     <button
       type={type}
@@ -11,6 +20,6 @@ function Button({ children, type = 'button', onClick, isDisabled = false }) {
       {children}
     </button>
   );
-}
+};
 
 export default Button;
