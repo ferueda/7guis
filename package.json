@@ -8,6 +8,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@types/luxon": "^1.25.0",
     "autoprefixer": "^9.8.6",
     "luxon": "^1.25.0",
     "postcss": "^7.0.35",
