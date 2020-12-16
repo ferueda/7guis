@@ -1,8 +1,10 @@
+import * as React from 'react';
+
 import Counter from './guis/Counter';
 import TempConverter from './guis/TempConverter';
 import FlightBooker from './guis/FlightBooker';
 
-function App() {
+const App: React.FC = () => {
   return (
     <main className="flex flex-col items-center h-screen w-full">
       <h1 className="text-xl font-bold text-center mt-5 text-blue-500 hover:underline">
@@ -20,6 +22,6 @@ function App() {
       </div>
     </main>
   );
-}
+};
 
 export default App;

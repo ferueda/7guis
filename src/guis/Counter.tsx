@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import * as React from 'react';
 
 import Window from '../components/shared/Window';
 import Header from '../components/shared/Header';
 import Body from '../components/shared/Body';
 import Button from '../components/shared/Button';
 
-function Counter() {
-  const [count, setCount] = useState(0);
-  const handleCount = () => setCount((prev) => prev + 1);
+const Counter: React.FC = () => {
+  const [count, setCount] = React.useState<number>(0);
+  const handleCount = (): void => setCount((prev) => prev + 1);
   return (
     <Window>
       <Header>Counter</Header>
@@ -19,6 +19,6 @@ function Counter() {
       </Body>
     </Window>
   );
-}
+};
 
 export default Counter;

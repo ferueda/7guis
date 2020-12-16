@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import * as React from 'react';
 import { DateTime } from 'luxon';
 
 import Window from '../components/shared/Window';
@@ -8,7 +8,7 @@ import Input from '../components/shared/Input';
 import Button from '../components/shared/Button';
 import Modal from '../components/shared/Modal';
 
-function checkValue(str, max) {
+function checkValue(str: string, max: number): string {
   if (str.charAt(0) !== '0' || str === '00') {
     let num = parseInt(str);
     if (isNaN(num) || num <= 0 || num > max) num = 1;
@@ -21,7 +21,7 @@ function checkValue(str, max) {
   return str;
 }
 
-function formatDate(date) {
+function formatDate(date: string): string {
   if (/\D\/$/.test(date)) {
     date = date.substr(0, date.length - 3);
   }
@@ -35,27 +35,27 @@ function formatDate(date) {
   return output.join('').substr(0, 14);
 }
 
-function isDateValid(input) {
+function isDateValid(input: string): boolean {
   const date = DateTime.fromFormat(input.replace(/ /g, ''), 'dd/mm/yyyy');
   if (input === '') return true;
-  if (date.invalid) return false;
+  if (!date.isValid) return false;
   return true;
 }
 
-function dateBafterA(inputA, inputB) {
+function dateBafterA(inputA: string, inputB: string): boolean {
   const dateA = DateTime.fromFormat(inputA.replace(/ /g, ''), 'dd/mm/yyyy');
   const dateB = DateTime.fromFormat(inputB.replace(/ /g, ''), 'dd/mm/yyyy');
 
-  return dateA.ts < dateB.ts;
+  return dateA.day <= dateB.day;
 }
 
-function FlightBooker() {
-  const [start, setStart] = useState('');
-  const [end, setEnd] = useState('');
-  const [flightType, setFlightType] = useState('one-way');
-  const [isModal, setIsModal] = useState(false);
+const FlightBooker: React.FC = () => {
+  const [start, setStart] = React.useState<string>('');
+  const [end, setEnd] = React.useState<string>('');
+  const [flightType, setFlightType] = React.useState<string>('one-way');
+  const [isModal, setIsModal] = React.useState<boolean>(false);
 
-  const isButtonDisabled =
+  const isButtonDisabled: boolean =
     flightType === 'one-way'
       ? start === '' || !isDateValid(start)
       : start === '' ||
@@ -64,23 +64,23 @@ function FlightBooker() {
         !isDateValid(end) ||
         !dateBafterA(start, end);
 
-  const lastEndDate = useRef('');
+  const lastEndDate = React.useRef<string>('');
 
-  const handleDateChange = ({ target }) => {
-    const date = formatDate(target.value);
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const date = formatDate(e.target.value);
 
-    if (target.name === 'start') {
+    if (e.target.name === 'start') {
       setStart(date);
     }
 
-    if (target.name === 'end') {
+    if (e.target.name === 'end') {
       setEnd(date);
       lastEndDate.current = date;
     }
   };
 
-  const handleOptionChange = ({ target }) => {
-    const type = target.value;
+  const handleOptionChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    const type = e.target.value;
 
     if (type === 'one-way') {
       setEnd('');
@@ -93,11 +93,9 @@ function FlightBooker() {
     setFlightType(type);
   };
 
-  const handleBooking = () => {
-    setIsModal(true);
-  };
+  const handleBooking = (): void => setIsModal(true);
 
-  const handleModalClose = () => setIsModal(false);
+  const handleModalClose = (): void => setIsModal(false);
 
   return (
     <Window>
@@ -156,6 +154,6 @@ function FlightBooker() {
       </Body>
     </Window>
   );
-}
+};
 
 export default FlightBooker;

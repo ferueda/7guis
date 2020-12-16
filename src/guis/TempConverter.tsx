@@ -1,39 +1,39 @@
-import { useState } from 'react';
+import * as React from 'react';
 
 import Window from '../components/shared/Window';
 import Header from '../components/shared/Header';
 import Body from '../components/shared/Body';
 import Input from '../components/shared/Input';
 
-function fromCelsiusToFahrenheit(temp) {
-  return Math.round(temp * (9 / 5) + 32);
+function fromCelsiusToFahrenheit(temp: string): string {
+  return String(Math.round(Number(temp) * (9 / 5) + 32));
 }
 
-function fromFahrenheitToCelsius(temp) {
-  return Math.round((temp - 32) * (5 / 9));
+function fromFahrenheitToCelsius(temp: string): string {
+  return String(Math.round((Number(temp) - 32) * (5 / 9)));
 }
 
-function isNum(value) {
-  return !isNaN(parseFloat(value)) && isFinite(value);
+function isNum(value: string): boolean {
+  return !isNaN(parseFloat(value)) && isFinite(Number(value));
 }
 
-function isValid(value) {
+function isValid(value: string): boolean {
   return isNum(value) || value === '';
 }
 
-function TempConverter() {
-  const [celsius, setCelsius] = useState('');
-  const [fahrenheit, setFahrenheit] = useState('');
+const TempConverter: React.FC = () => {
+  const [celsius, setCelsius] = React.useState<string>('');
+  const [fahrenheit, setFahrenheit] = React.useState<string>('');
 
-  const handleTempChange = ({ target }) => {
-    const temp = target.value;
+  const handleTempChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const temp = e.target.value;
 
-    if (target.name === 'celsius') {
+    if (e.target.name === 'celsius') {
       setCelsius(temp);
       setFahrenheit(isNum(temp) ? fromCelsiusToFahrenheit(temp) : '');
     }
 
-    if (target.name === 'fahrenheit') {
+    if (e.target.name === 'fahrenheit') {
       setFahrenheit(temp);
       setCelsius(isNum(temp) ? fromFahrenheitToCelsius(temp) : '');
     }
@@ -69,6 +69,6 @@ function TempConverter() {
       </Body>
     </Window>
   );
-}
+};
 
 export default TempConverter;
