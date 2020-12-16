@@ -7,6 +7,6 @@ This repository contains the code for the [7GUIs Challange](http://eugenkiss.git
 
 ## Tasks
 
-* [Counter](https://github.com/ferueda/7guis/blob/main/src/guis/Counter.js)
-* [Temperature Converter](https://github.com/ferueda/7guis/blob/main/src/guis/TempConverter.js)
-* [Flight Booker](https://github.com/ferueda/7guis/blob/main/src/guis/FlightBooker.js)
+* [Counter](https://github.com/ferueda/7guis/blob/main/src/guis/Counter.tsx)
+* [Temperature Converter](https://github.com/ferueda/7guis/blob/main/src/guis/TempConverter.tsx)
+* [Flight Booker](https://github.com/ferueda/7guis/blob/main/src/guis/FlightBooker.tsx)
