@@ -8,49 +8,22 @@ import Input from '../components/shared/Input';
 import Button from '../components/shared/Button';
 import Modal from '../components/shared/Modal';
 
-function checkValue(str: string, max: number): string {
-  if (str.charAt(0) !== '0' || str === '00') {
-    let num = parseInt(str);
-    if (isNaN(num) || num <= 0 || num > max) num = 1;
-    str =
-      num > parseInt(max.toString().charAt(0)) && num.toString().length === 1
-        ? '0' + num
-        : num.toString();
-  }
-
-  return str;
-}
-
-function formatDate(date: string): string {
-  if (/\D\/$/.test(date)) {
-    date = date.substr(0, date.length - 3);
-  }
-  let values = date.split('/').map((v) => v.replace(/\D/g, ''));
-
-  if (values[1]) values[1] = checkValue(values[1], 12);
-  if (values[0]) values[0] = checkValue(values[0], 31);
-
-  let output = values.map((v, i) => (v.length === 2 && i < 2 ? v + ' / ' : v));
-
-  return output.join('').substr(0, 14);
-}
-
 function isDateValid(input: string): boolean {
-  const date = DateTime.fromFormat(input.replace(/ /g, ''), 'dd/mm/yyyy');
+  const date = DateTime.fromFormat(input, 'dd.MM.yyyy');
   if (input === '') return true;
   if (!date.isValid) return false;
   return true;
 }
 
 function dateBafterA(inputA: string, inputB: string): boolean {
-  const dateA = DateTime.fromFormat(inputA.replace(/ /g, ''), 'dd/mm/yyyy');
-  const dateB = DateTime.fromFormat(inputB.replace(/ /g, ''), 'dd/mm/yyyy');
+  const dateA = DateTime.fromFormat(inputA, 'dd.MM.yyyy');
+  const dateB = DateTime.fromFormat(inputB, 'dd.MM.yyyy');
 
-  return dateA.day <= dateB.day;
+  return dateB.toMillis() >= dateA.toMillis();
 }
 
 const FlightBooker: React.FC = () => {
-  const [start, setStart] = React.useState<string>('');
+  const [start, setStart] = React.useState<string>(DateTime.local().toFormat('dd.MM.yyyy'));
   const [end, setEnd] = React.useState<string>('');
   const [flightType, setFlightType] = React.useState<string>('one-way');
   const [isModal, setIsModal] = React.useState<boolean>(false);
@@ -67,7 +40,7 @@ const FlightBooker: React.FC = () => {
   const lastEndDate = React.useRef<string>('');
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const date = formatDate(e.target.value);
+    const date = e.target.value;
 
     if (e.target.name === 'start') {
       setStart(date);
