@@ -5,7 +5,7 @@ type Props = {
 };
 
 const Body: React.FC<Props> = ({ children }) => {
-  return <div className="p-2">{children}</div>;
+  return <div className="flex flex-col items-center p-2 w-full">{children}</div>;
 };
 
 export default Body;
