@@ -5,28 +5,36 @@ import Header from '../components/shared/Header';
 import Body from '../components/shared/Body';
 import Button from '../components/shared/Button';
 
-const Timer: React.FC = () => {
-  const [elapsedTime, setElapsedTime] = React.useState<number>(0);
-  const [duration, setDuration] = React.useState<number>(30000);
+type Time = {
+  elapsedTime: number;
+  duration: number;
+};
 
-  const formattedElapsedTime: string = (elapsedTime / 1000).toFixed(1);
+const Timer: React.FC = () => {
+  const [time, setTime] = React.useState<Time>({ elapsedTime: 0, duration: 30000 });
+
+  const formattedElapsedTime: string = (time.elapsedTime / 1000).toFixed(1);
 
   React.useEffect(() => {
     const interval = window.setInterval(() => {
-      setElapsedTime((prev) => (prev < duration ? prev + 100 : prev));
+      setTime((prev) => {
+        return prev.elapsedTime < prev.duration
+          ? { ...prev, elapsedTime: prev.elapsedTime + 100 }
+          : prev;
+      });
     }, 100);
 
     return () => {
       window.clearInterval(interval);
     };
-  }, [duration]);
+  }, []);
 
   const handleReset = (): void => {
-    setElapsedTime(0);
+    setTime((prev) => ({ ...prev, elapsedTime: 0 }));
   };
 
   const handleDuration = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setDuration(Number(e.target.value));
+    setTime((prev) => ({ ...prev, duration: Number(e.target.value) }));
   };
 
   return (
@@ -35,15 +43,13 @@ const Timer: React.FC = () => {
       <Body>
         <div className="flex items-center justify-between">
           <span>Elapsed Time:</span>
-          <meter min={0} max={duration} value={elapsedTime} className="w-60 ml-4" />
+          <meter min={0} max={time.duration} value={time.elapsedTime} className="w-60 ml-4" />
         </div>
 
         <div className="my-2">{formattedElapsedTime}s</div>
 
         <div className="w-full flex items-center justify-between mb-2">
-          <label htmlFor="dur" className="">
-            Duration:
-          </label>
+          <label htmlFor="dur">Duration:</label>
 
           <input
             id="dur"
@@ -51,7 +57,7 @@ const Timer: React.FC = () => {
             type="range"
             min={1000}
             max={60000}
-            value={duration}
+            value={time.duration}
             className="ml-4 w-full"
             onChange={handleDuration}
           />
