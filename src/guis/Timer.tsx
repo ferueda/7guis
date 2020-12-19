@@ -17,11 +17,9 @@ const Timer: React.FC = () => {
 
   React.useEffect(() => {
     const interval = window.setInterval(() => {
-      setTime((prev) => {
-        return prev.elapsedTime < prev.duration
-          ? { ...prev, elapsedTime: prev.elapsedTime + 100 }
-          : prev;
-      });
+      setTime((prev) =>
+        prev.elapsedTime < prev.duration ? { ...prev, elapsedTime: prev.elapsedTime + 100 } : prev,
+      );
     }, 100);
 
     return () => {
@@ -42,14 +40,16 @@ const Timer: React.FC = () => {
       <Header>Timer</Header>
       <Body>
         <div className="flex items-center justify-between">
-          <span>Elapsed Time:</span>
+          <span className="text-sm text-gray-800">Elapsed Time:</span>
           <meter min={0} max={time.duration} value={time.elapsedTime} className="w-60 ml-4" />
         </div>
 
         <div className="my-2">{formattedElapsedTime}s</div>
 
         <div className="w-full flex items-center justify-between mb-2">
-          <label htmlFor="dur">Duration:</label>
+          <label htmlFor="dur" className="text-sm text-gray-800">
+            Duration:
+          </label>
 
           <input
             id="dur"
