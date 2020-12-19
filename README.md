@@ -11,3 +11,4 @@ This repository contains the code for the [7GUIs Challange](http://eugenkiss.git
 * [Temperature Converter](https://github.com/ferueda/7guis/blob/main/src/guis/TempConverter.tsx)
 * [Flight Booker](https://github.com/ferueda/7guis/blob/main/src/guis/FlightBooker.tsx)
 * [Timer](https://github.com/ferueda/7guis/blob/main/src/guis/Timer.tsx)
+* [Crud](https://github.com/ferueda/7guis/blob/main/src/guis/Crud.tsx)
