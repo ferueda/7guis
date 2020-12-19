@@ -4,6 +4,7 @@ import Counter from './guis/Counter';
 import TempConverter from './guis/TempConverter';
 import FlightBooker from './guis/FlightBooker';
 import Timer from './guis/Timer';
+import Crud from './guis/Crud';
 
 const App: React.FC = () => {
   return (
@@ -21,6 +22,7 @@ const App: React.FC = () => {
         <TempConverter />
         <FlightBooker />
         <Timer />
+        <Crud />
       </div>
     </main>
   );
