@@ -4,6 +4,7 @@ import Window from '../components/shared/Window';
 import Header from '../components/shared/Header';
 import Body from '../components/shared/Body';
 import Input from '../components/shared/Input';
+import Label from '../components/shared/Label';
 
 function fromCelsiusToFahrenheit(temp: string): string {
   return String(Math.round(Number(temp) * (9 / 5) + 32));
@@ -51,9 +52,9 @@ const TempConverter: React.FC = () => {
             value={celsius}
             isValid={isValid(celsius)}
           />
-          <label htmlFor="celsius" className="text-sm text-gray-800 mx-2">
+          <Label isFor="celsius" margin="mx">
             Celsius
-          </label>
+          </Label>
 
           <Input
             id="fahrenheit"
@@ -62,9 +63,9 @@ const TempConverter: React.FC = () => {
             value={fahrenheit}
             isValid={isValid(fahrenheit)}
           />
-          <label htmlFor="fahrenheit" className="text-sm text-gray-800 ml-2">
+          <Label isFor="fahrenheit" margin="ml">
             Fahrenheit
-          </label>
+          </Label>
         </div>
       </Body>
     </Window>

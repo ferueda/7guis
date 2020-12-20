@@ -6,6 +6,7 @@ import Header from '../components/shared/Header';
 import Body from '../components/shared/Body';
 import Button from '../components/shared/Button';
 import Input from '../components/shared/Input';
+import Label from '../components/shared/Label';
 
 const initialList: Record[] = [
   {
@@ -89,9 +90,11 @@ const Crud: React.FC = () => {
     if (inputName === 'name') {
       setNameInput(e.target.value);
     }
+
     if (inputName === 'surname') {
       setSurnameInput(e.target.value);
     }
+
     if (inputName === 'prefix') {
       setPrefixInput(e.target.value);
     }
@@ -147,9 +150,9 @@ const Crud: React.FC = () => {
       <Body>
         <div className="grid grid-cols-2 col-rows-3 gap-2 justify-center items-center">
           <div className="flex col-start-1 col-end-1 row-start-1 row-end-1 items-center">
-            <label htmlFor="prefix" className="text-sm text-gray-800 whitespace-nowrap mr-2">
+            <Label isFor="prefix" margin="mr">
               Filter Prefix:
-            </label>
+            </Label>
             <Input id="prefix" name="prefix" onChange={handleInputChange} value={prefixInput} />
           </div>
 
@@ -170,19 +173,19 @@ const Crud: React.FC = () => {
 
           <div className="flex flex-col col-start-2 col-end-2 row-start-2 row-end-2">
             <div className="flex items-center justify-between">
-              <label htmlFor="name" className="text-sm text-gray-800 whitespace-nowrap mr-2">
+              <Label isFor="name" margin="mr">
                 Name:
-              </label>
-              <div className="">
+              </Label>
+              <div>
                 <Input id="name" name="name" onChange={handleInputChange} value={nameInput} />
               </div>
             </div>
 
             <div className="flex items-center justify-between mt-2">
-              <label htmlFor="surname" className="text-sm text-gray-800 whitespace-nowrap mr-2">
+              <Label isFor="surname" margin="mr">
                 Surname:
-              </label>
-              <div className="">
+              </Label>
+              <div>
                 <Input
                   id="surname"
                   name="surname"
