@@ -156,12 +156,12 @@ const Crud: React.FC = () => {
             <Input id="prefix" name="prefix" onChange={handleInputChange} value={prefixInput} />
           </div>
 
-          <div className="flex flex-col col-start-1 col-end-1 row-start-2 row-end-2">
+          <div className="flex flex-col col-start-1 col-end-1 row-start-2 row-end-2 max-w-16">
             <select
               onChange={selectRecord}
               size={5}
               value={selectedRecord}
-              className="rounded-md bg-white border border-gray-200 text-sm shadow overflow-x-scroll max-w-15"
+              className="rounded-md bg-white border border-gray-200 text-sm shadow overflow-x-scroll w-full"
             >
               {listToShow.map(({ id, surname, name }) => (
                 <option key={id} value={id}>
