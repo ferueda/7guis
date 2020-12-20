@@ -7,6 +7,9 @@ module.exports = {
         modalOverlay: 'rgba(0, 0, 0, 0.5)',
       },
     },
+    maxWidth: {
+      15: '15rem',
+    },
   },
   variants: {
     extend: {

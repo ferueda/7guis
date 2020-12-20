@@ -48,7 +48,7 @@ function sortRecordsAlphabetically(list: Record[]): Record[] {
   });
 }
 
-const Crud = () => {
+const Crud: React.FC = () => {
   const [prefixInput, setPrefixInput] = React.useState<string>('');
   const [nameInput, setNameInput] = React.useState<string>('');
   const [surnameInput, setSurnameInput] = React.useState<string>('');
@@ -158,7 +158,7 @@ const Crud = () => {
               onChange={selectRecord}
               size={5}
               value={selectedRecord}
-              className="rounded-md bg-white border border-gray-200 text-sm shadow w-full"
+              className="rounded-md bg-white border border-gray-200 text-sm shadow overflow-x-scroll max-w-15"
             >
               {listToShow.map(({ id, surname, name }) => (
                 <option key={id} value={id}>
