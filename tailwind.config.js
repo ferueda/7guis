@@ -8,7 +8,7 @@ module.exports = {
       },
     },
     maxWidth: {
-      15: '15rem',
+      16: '16rem',
     },
   },
   variants: {
